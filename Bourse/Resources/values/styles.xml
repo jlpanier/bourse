@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<!-- Inherit from the light Material Theme -->
+	<style name="Theme.Material" parent="android:Theme.Material.Light">
+	</style>
+
+	<style name="AppTheme" parent="@android:style/Theme.Material.Light.DarkActionBar">
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowActionBar">false</item>
+		<item name="android:colorPrimary">#5A8622</item>
+
+		<!-- https://docs.microsoft.com/en-us/xamarin/android/user-interface/material-theme -->
+		<item name="android:windowBackground">@color/windowBackground</item>
+
+		<!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette-->
+		<!-- colorPrimary is used for the default action bar background -->
+		<item name="android:colorPrimary">@color/colorPrimary</item>
+
+		<!-- colorPrimaryDark is used for the status bar -->
+		<item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+
+		<!-- colorAccent is used as the default value for colorControlActivated which is used to tint widgets -->
+		<item name="android:colorAccent">@color/colorAccent</item>
+
+		<!-- You can also set colorControlNormal, colorControlActivated, colorControlHighlight and colorSwitchThumbNormal. -->
+
+		<!-- Option to hide the drop shadow here
+          <item name="actionBarStyle">@style/MyTheme.ActionBar</item>
+          <item name="android:windowContentOverlay">@null</item>
+        -->
+	</style>
+
+	<style name="Text.Titre" parent="AppTheme">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textSize">@dimen/textXL</item>
+		<item name="android:textColor">@color/textColorPrimary</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:padding">@dimen/MarginS</item>
+		<item name="android:textAllCaps">false</item>
+	</style>
+
+	<style name="Text.Label" parent="Text.Titre">
+		<item name="android:layout_gravity">center_vertical|left</item>
+		<item name="android:gravity">center_vertical|left</item>
+		<item name="android:textSize">@dimen/textM</item>
+		<item name="android:textColor">@color/textColorSecondary</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+
+	<style name="Text.Edit" parent="Text.Label">
+		<item name="android:inputType">text</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:maxLines">1</item>
+		<item name="android:textSize">@dimen/textB</item>
+		<item name="android:textColor">@color/textColorPrimary</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:selectAllOnFocus">true</item>
+	</style>
+
+	<style name="Text.Item" parent="Text.Label">
+		<item name="android:textSize">@dimen/textH</item>
+		<item name="android:textColor">@color/textColorSecondary</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+
+	<style name="Text.Item1" parent="Text.Titre">
+		<item name="android:textSize">@dimen/textB</item>
+		<item name="android:textColor">@color/textColorPrimary</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:padding">0dp</item>
+	</style>
+
+	<style name="Text.Item2" parent="Text.Item1">
+		<item name="android:textSize">@dimen/textM</item>
+		<item name="android:textColor">@color/textColorSecondary</item>
+		<item name="android:textStyle">italic</item>
+		<item name="android:padding">0dp</item>
+	</style>
+
+	<style name="Text.Item3" parent="Text.Item2">
+		<item name="android:textSize">@dimen/textM</item>
+		<item name="android:textColor">@color/textColorSecondary</item>
+		<item name="android:textStyle">italic</item>
+	</style>
+
+	<style name="Button.Dialog" parent="AppTheme">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textSize">@dimen/textB</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:textAllCaps">false</item>
+		<item name="android:background">@color/transparent</item>
+	</style>
+
+	<style name="Button.Menu" parent="AppTheme">
+		<item name="android:layout_width">48dp</item>
+		<item name="android:layout_height">48dp</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textOff">""</item>
+		<item name="android:textOn">""</item>
+	</style>
+
+	<style name="Button.Floating" parent="Button.Menu">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:gravity">center</item>
+		<item name="android:layout_marginRight">@dimen/MarginL</item>
+		<item name="android:layout_marginLeft">@dimen/MarginL</item>
+	</style>
+
+	<style name="Image" parent="AppTheme">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:gravity">center</item>
+	</style>
+
+	<style name="ImageView.FloatingButton" parent="Image">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_margin">@dimen/MarginL</item>
+		<item name="android:layout_alignParentBottom">true</item>
+		<item name="android:layout_alignParentRight">true</item>
+		<item name="android:padding">@dimen/MarginL</item>
+		<item name="android:gravity">center</item>
+	</style>
+
+	<style name="ListView" parent="Text.Titre">
+		<item name="android:divider">@color/textColorPrimary</item>
+		<item name="android:dividerHeight">2px</item>
+		<item name="android:cacheColorHint">@color/colorRed</item>
+		<item name="android:footerDividersEnabled">false</item>
+		<item name="android:padding">@dimen/MarginS</item>
+		<item name="android:background">@color/transparent</item>
+		<item name="android:scrollbarSize">4dp</item>
+		<item name="android:scrollbarThumbVertical">@drawable/scrollbar</item>
+		<item name="android:divider">@drawable/divider</item>
+		<item name="android:divider">@drawable/divider</item>
+	</style>
+
+	<style name="NumberPicker" parent="Text.Label">
+		<item name="android:solidColor">@color/colorPrimary</item>
+		<item name="android:showDividers">middle</item>
+		<item name="android:layoutMode">clipBounds</item>
+	</style>
+
+	<style name="GroupBox" parent="Text.Label">
+		<item name="android:textSize">@dimen/textH</item>
+		<item name="android:textColor">@color/textColorSecondary</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+	</style>
+
+	<style name="View.Separator" parent="Text.Label">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">2dp</item>
+		<item name="android:layout_margin">@dimen/MarginS</item>
+		<item name="android:background">@color/colorPrimaryDark</item>
+	</style>
+
+</resources>

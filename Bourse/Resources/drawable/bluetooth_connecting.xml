@@ -1,0 +1,4 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:drawable="@drawable/bluetooth_connected" android:duration="500" />
+  <item android:drawable="@drawable/bluetooth_disconnected" android:duration="500" />
+</animation-list>

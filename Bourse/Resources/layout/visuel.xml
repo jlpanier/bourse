@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout 
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/color50"
+            style="@style/Text.Label"/>
+
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/color100"
+            style="@style/Text.Label"/>
+
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/color200"
+            style="@style/Text.Label"/>
+
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/color300"
+            style="@style/Text.Label"/>
+
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/color400"
+            style="@style/Text.Label"/>
+
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/color500"
+            style="@style/Text.Label"/>
+
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/color600"
+            style="@style/Text.Label"/>
+
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/color700"
+            style="@style/Text.Label"/>
+
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/color800"
+            style="@style/Text.Label"/>
+
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/color900"
+            style="@style/Text.Label"/>
+
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/colorA100"
+            style="@style/Text.Label"/>
+
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/colorA200"
+            style="@style/Text.Label"/>
+
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/colorA400"
+            style="@style/Text.Label"/>
+
+	    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/colorBlack"
+		    android:background="@color/colorA700"
+            style="@style/Text.Label"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <LinearLayout 
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/MarginM">
+
+	        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="appicon"
+                style="@style/Text.Label"/>
+
+	        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+		        android:src="@drawable/appicon"
+                style="@style/Image"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bluetooth connected"
+                style="@style/Text.Label"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+		        android:src="@drawable/bluetooth_connected"
+                style="@style/Image"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bluetooth connecting"
+                style="@style/Text.Label"/>
+
+            <ImageView
+                android:id="@+id/bluetooth_connecting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+		        android:src="@drawable/bluetooth_connecting"
+                style="@style/Image"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bluetooth disconnected"
+                style="@style/Text.Label"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+		        android:src="@drawable/bluetooth_disconnected"
+                style="@style/Image"/>
+
+	        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="application"
+                style="@style/Text.Label"/>
+        
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+		        android:src="@drawable/application"
+                style="@style/Image"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="banque"
+                style="@style/Text.Label"/>
+        
+            <LinearLayout 
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/MarginS">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+		            android:src="@drawable/banque_on"
+                    style="@style/Image"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+		            android:src="@drawable/banque_off"
+                    style="@style/Image"/>
+
+                <Button
+                    android:background="@drawable/banque"
+                    style="@style/Button.Menu"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="chat_fleche_croissance_24"
+                style="@style/Text.Label"/>
+        
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+		        android:src="@drawable/chat_fleche_croissance_24"
+                style="@style/Image"/>
+ 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="boite_24"
+                style="@style/Text.Label"/>
+        
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+		        android:src="@drawable/boite_24"
+                style="@style/Image"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="couche_plus"
+                style="@style/Text.Label"/>
+        
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+		        android:src="@drawable/couche_plus"
+                style="@style/Image"/>
+        
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="statistiques"
+                style="@style/Text.Label"/>
+        
+            <LinearLayout 
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/MarginS">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+		            android:src="@drawable/statistiques_on"
+                    style="@style/Image"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+		            android:src="@drawable/statistiques_off"
+                    style="@style/Image"/>
+
+                <Button
+                    android:background="@drawable/statistiques"
+                    style="@style/Button.Menu"/>
+
+            </LinearLayout>
+     
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="regle_triangle"
+                style="@style/Text.Label"/>
+            <LinearLayout 
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/MarginS">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+		            android:src="@drawable/regle_triangle_on"
+                    style="@style/Image"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+		            android:src="@drawable/regle_triangle_off"
+                    style="@style/Image"/>
+
+                <Button
+                    android:background="@drawable/regle_triangle"
+                    style="@style/Button.Menu"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

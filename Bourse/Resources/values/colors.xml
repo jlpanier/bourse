@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<!-- https://www.flaticon.com/fr/chercher?word=outil&type=uicon -->
+	<!-- https://docs.microsoft.com/en-us/xamarin/android/user-interface/material-theme -->
+	<!-- https://developer.android.com/develop/ui/views/theming/dynamic-colors -->
+
+	<!-- colorPrimary – The color of the app bar. -->
+	<color name="colorPrimary">@color/color800</color>
+
+	<!-- colorPrimaryDark – The color of the status bar and contextual app bars; this is normally a dark version of colorPrimary.-->
+	<color name="colorPrimaryDark">@color/color900</color>
+
+	<!-- colorAccent – The color of UI controls such as check boxes, radio buttons, and edit text boxes.-->
+	<color name="colorAccent">@color/color700</color>
+
+	<!-- windowBackground – The color of the screen background.-->
+	<color name="windowBackground">@color/color50</color>
+
+	<!-- textColorPrimary – The color of UI text in the app bar.-->
+	<color name="textColorPrimary">@color/color900</color>
+	<color name="textColorSecondary">@color/color300</color>
+
+	<!-- statusBarColor – The color of the status bar.-->
+	<color name="statusBarColor">@color/color900</color>
+
+	<!-- navigationBarColor – The color of the navigation bar.-->
+	<color name="navigationBarColor">@color/color800</color>
+
+	<color name="colorError">#B00020</color>
+	<color name="transparent">@android:color/transparent</color>
+	<color name="colorIcone">@color/color900</color>
+	<color name="colorSelected">@color/color900</color>
+	<color name="colorUnselected">@color/color200</color>
+	<color name="colorFocused">@color/color600</color>
+
+	<!-- https://material.io/design/color/the-color-system.html -->
+	<color name="color50">#FFEBEE</color>
+	<color name="color100">#FFCDD2</color>
+	<color name="color200">#EF9A9A</color>
+	<color name="color300">#E57373</color>
+	<color name="color400">#EF5350</color>
+	<color name="color500">#F44336</color>
+	<color name="color600">#E53935</color>
+	<color name="color700">#D32F2F</color>
+	<color name="color800">#C62828</color>
+	<color name="color900">#B71C1C</color>
+	<color name="colorA100">#FF8A80</color>
+	<color name="colorA200">#FF5252</color>
+	<color name="colorA400">#FF1744</color>
+	<color name="colorA700">#D50000</color>
+
+	<color name="colorDarkBlue">#579DD6</color>
+	<color name="colorBlack">#000000</color>
+	<color name="colorWhite">#FFFFFF</color>
+	<color name="colorGrey">#C0C0C0</color>
+	<color name="colorRed">#FF0000</color>
+	<color name="colorGreen">#00FF00</color>
+	<color name="colorBlue">#0000FF</color>
+	<color name="cellback">#0000FF</color>
+</resources>

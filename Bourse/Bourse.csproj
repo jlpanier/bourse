@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+    <OutputType>Exe</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationId>com.jelosperone.bourse</ApplicationId>
+    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resources\drawable\application.xml" />
+    <None Remove="Resources\drawable\banque.xml" />
+    <None Remove="Resources\drawable\banque_focused.xml" />
+    <None Remove="Resources\drawable\banque_off.xml" />
+    <None Remove="Resources\drawable\bluetooth_connected.xml" />
+    <None Remove="Resources\drawable\bluetooth_connecting.xml" />
+    <None Remove="Resources\drawable\bluetooth_disconnected.xml" />
+    <None Remove="Resources\drawable\bluetooth_focused.xml" />
+    <None Remove="Resources\drawable\bluetooth_off.xml" />
+    <None Remove="Resources\drawable\bluetooth_on.xml" />
+    <None Remove="Resources\drawable\divider.xml" />
+    <None Remove="Resources\drawable\regle_triangle.xml" />
+    <None Remove="Resources\drawable\regle_triangle_focused.xml" />
+    <None Remove="Resources\drawable\regle_triangle_off.xml" />
+    <None Remove="Resources\drawable\scrollbar.xml" />
+    <None Remove="Resources\drawable\shape_oval_64.xml" />
+    <None Remove="Resources\drawable\statistiques.xml" />
+    <None Remove="Resources\drawable\statistiques_off.xml" />
+    <None Remove="Resources\drawable\statistiques_on.xml" />
+    <None Remove="Resources\layout-large\shareprices.xml" />
+    <None Remove="Resources\layout-small\shareprices.xml" />
+    <None Remove="Resources\layout-xlarge\shareprices.xml" />
+    <None Remove="Resources\layout\ActionFragment.xml" />
+    <None Remove="Resources\layout\bluetooth.xml" />
+    <None Remove="Resources\layout\dlgshare.xml" />
+    <None Remove="Resources\layout\item_device.xml" />
+    <None Remove="Resources\layout\item_share.xml" />
+    <None Remove="Resources\layout\item_shareprices.xml" />
+    <None Remove="Resources\layout\message.xml" />
+    <None Remove="Resources\layout\shareprices.xml" />
+    <None Remove="Resources\layout\shares.xml" />
+    <None Remove="Resources\layout\share_history.xml" />
+    <None Remove="Resources\layout\SplashScreen.xml" />
+    <None Remove="Resources\layout\visuel.xml" />
+    <None Remove="Resources\layout\WebView.xml" />
+    <None Remove="Resources\values\colors.xml" />
+    <None Remove="Resources\values\dimens.xml" />
+    <None Remove="Resources\values\styles.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="8.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.CustomView" Version="1.1.0.17" />
+    <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.6.0" />
+    <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.3.0.2" />
+    <PackageReference Include="Xamarin.AndroidX.SwipeRefreshLayout" Version="1.1.0.13" />
+    <PackageReference Include="Xamarin.AndroidX.ViewPager" Version="1.0.0.18" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\animation\" />
+  </ItemGroup>
+</Project>
