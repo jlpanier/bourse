@@ -55,7 +55,14 @@ namespace WsBoursorama
                     index = text1.IndexOf("c-median-gauge__tooltip");
                     string text3 = text1.Substring(index+ "c-median-gauge__tooltip".Length +5);
                     index = text3.IndexOf("</div>");
-                    result.Risk = text3.Substring(0, index-2).Trim();
+                    if (double.TryParse(text3.Substring(0, index - 2).Trim().Replace("/100", ""), out double val))
+                    {
+                        result.Risk = val;
+                    }
+                    else
+                    {
+                        result.Risk = 0;
+                    }
 
                     index = text3.IndexOf("c-median-gauge__tooltip");
                     string text4 = text3.Substring(index + "c-median-gauge__tooltip".Length + 5);

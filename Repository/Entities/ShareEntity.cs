@@ -8,11 +8,11 @@ namespace Repository.Entities
     {
         #region INotifyPropertyChanged
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
         {
             IsDirty = true;
-            PropertyChangedEventHandler handler = PropertyChanged;
+            PropertyChangedEventHandler? handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -53,7 +53,7 @@ namespace Repository.Entities
                 }
             }
         }
-        private string _code;
+        private string _code = "";
 
         [Column("NAME")]
         public string NAME
@@ -68,7 +68,7 @@ namespace Repository.Entities
                 }
             }
         }
-        private string _name;
+        private string _name = "";
 
         [Column("URL")]
         public string URL
@@ -83,7 +83,7 @@ namespace Repository.Entities
                 }
             }
         }
-        private string _url;
+        private string _url = "";
 
         [Column("CAC40")]
         public bool CAC40
@@ -114,5 +114,81 @@ namespace Repository.Entities
             }
         }
         private DateTime _datemaj;
+
+        [Column("AMOUNT")]
+        public double AMOUNT
+        {
+            get { return _amount; }
+            set
+            {
+                if (_amount != value)
+                {
+                    _amount = value;
+                    NotifyPropertyChanged(nameof(AMOUNT));
+                }
+            }
+        }
+        private double _amount;
+
+        [Column("RISK")]
+        public double RISK
+        {
+            get { return _risk; }
+            set
+            {
+                if (_risk != value)
+                {
+                    _risk = value;
+                    NotifyPropertyChanged(nameof(RISK));
+                }
+            }
+        }
+        private double _risk;
+
+        [Column("CONSENSUS")]
+        public double CONSENSUS
+        {
+            get { return _consensus; }
+            set
+            {
+                if (_consensus != value)
+                {
+                    _consensus = value;
+                    NotifyPropertyChanged(nameof(CONSENSUS));
+                }
+            }
+        }
+        private double _consensus;
+
+        [Column("RENDEMENT")]
+        public double RENDEMENT
+        {
+            get { return _rendement; }
+            set
+            {
+                if (_rendement != value)
+                {
+                    _rendement = value;
+                    NotifyPropertyChanged(nameof(CONSENSUS));
+                }
+            }
+        }
+        private double _rendement;
+
+        [Column("DATEON")]
+        public DateTime DATEON
+        {
+            get { return _dateon; }
+            set
+            {
+                if (_dateon != value)
+                {
+                    _dateon = value;
+                    NotifyPropertyChanged(nameof(DATEON));
+                }
+            }
+        }
+        private DateTime _dateon;
+
     }
 }

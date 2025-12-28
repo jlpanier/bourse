@@ -1,66 +1,140 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net7.0-android</TargetFramework>
-    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
-    <OutputType>Exe</OutputType>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationId>com.jelosperone.bourse</ApplicationId>
-    <ApplicationVersion>1</ApplicationVersion>
-    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Resources\drawable\application.xml" />
-    <None Remove="Resources\drawable\banque.xml" />
-    <None Remove="Resources\drawable\banque_focused.xml" />
-    <None Remove="Resources\drawable\banque_off.xml" />
-    <None Remove="Resources\drawable\bluetooth_connected.xml" />
-    <None Remove="Resources\drawable\bluetooth_connecting.xml" />
-    <None Remove="Resources\drawable\bluetooth_disconnected.xml" />
-    <None Remove="Resources\drawable\bluetooth_focused.xml" />
-    <None Remove="Resources\drawable\bluetooth_off.xml" />
-    <None Remove="Resources\drawable\bluetooth_on.xml" />
-    <None Remove="Resources\drawable\divider.xml" />
-    <None Remove="Resources\drawable\regle_triangle.xml" />
-    <None Remove="Resources\drawable\regle_triangle_focused.xml" />
-    <None Remove="Resources\drawable\regle_triangle_off.xml" />
-    <None Remove="Resources\drawable\scrollbar.xml" />
-    <None Remove="Resources\drawable\shape_oval_64.xml" />
-    <None Remove="Resources\drawable\statistiques.xml" />
-    <None Remove="Resources\drawable\statistiques_off.xml" />
-    <None Remove="Resources\drawable\statistiques_on.xml" />
-    <None Remove="Resources\layout-large\shareprices.xml" />
-    <None Remove="Resources\layout-small\shareprices.xml" />
-    <None Remove="Resources\layout-xlarge\shareprices.xml" />
-    <None Remove="Resources\layout\ActionFragment.xml" />
-    <None Remove="Resources\layout\bluetooth.xml" />
-    <None Remove="Resources\layout\dlgshare.xml" />
-    <None Remove="Resources\layout\item_device.xml" />
-    <None Remove="Resources\layout\item_share.xml" />
-    <None Remove="Resources\layout\item_shareprices.xml" />
-    <None Remove="Resources\layout\message.xml" />
-    <None Remove="Resources\layout\shareprices.xml" />
-    <None Remove="Resources\layout\shares.xml" />
-    <None Remove="Resources\layout\share_history.xml" />
-    <None Remove="Resources\layout\SplashScreen.xml" />
-    <None Remove="Resources\layout\visuel.xml" />
-    <None Remove="Resources\layout\WebView.xml" />
-    <None Remove="Resources\values\colors.xml" />
-    <None Remove="Resources\values\dimens.xml" />
-    <None Remove="Resources\values\styles.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="8.0.1" />
-    <PackageReference Include="Xamarin.AndroidX.CustomView" Version="1.1.0.17" />
-    <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.6.0" />
-    <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.3.0.2" />
-    <PackageReference Include="Xamarin.AndroidX.SwipeRefreshLayout" Version="1.1.0.13" />
-    <PackageReference Include="Xamarin.AndroidX.ViewPager" Version="1.0.0.18" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Business\Business.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\animation\" />
-  </ItemGroup>
+
+	<PropertyGroup>
+		<LangVersion>preview</LangVersion>
+
+		<TargetFrameworks>net9.0-android;net9.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net9.0-tizen</TargetFrameworks> -->
+
+		<!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>Bourse</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<!-- https://github.com/CommunityToolkit/Maui/issues/2205 -->
+		<NoWarn>XC0103;CA1416 </NoWarn>
+		<MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
+
+		<!-- Display name -->
+		<ApplicationTitle>Bourse</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.jelosperone.bourse</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
+		<WindowsPackageType>None</WindowsPackageType>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">29.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\icon.png" BaseSize="225,225">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</MauiIcon>
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.jpg" Color="#17171a" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Remove="Data\**" />
+	  <AndroidResource Remove="PageModels\**" />
+	  <Compile Remove="Data\**" />
+	  <Compile Remove="PageModels\**" />
+	  <EmbeddedResource Remove="Data\**" />
+	  <EmbeddedResource Remove="PageModels\**" />
+	  <MauiCss Remove="Data\**" />
+	  <MauiCss Remove="PageModels\**" />
+	  <MauiXaml Remove="Data\**" />
+	  <MauiXaml Remove="PageModels\**" />
+	  <None Remove="Data\**" />
+	  <None Remove="PageModels\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\AppIcon\appicon.png" />
+	  <None Remove="ViewModels\PrimeNumberViewModel.cs~RF87e3932.TMP" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="DevExpress.Maui.Charts" Version="25.1.7" />
+		<PackageReference Include="FFImageLoading.Maui" Version="1.3.2" />
+		<PackageReference Include="MailKit" Version="4.14.1" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.100" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.8" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="12.2.0" />
+		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="9.0.8" />
+		<PackageReference Include="Microsoft.Maui.Resizetizer" Version="9.0.110" />
+		<PackageReference Include="MimeKit" Version="4.14.0" />
+		<PackageReference Include="SkiaSharp.Extended" Version="2.0.0" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.119.1" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
+		<PackageReference Include="Syncfusion.Maui.ListView" Version="31.2.2" />
+		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.6" />
+		<PackageReference Include="System.ObjectModel" Version="4.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Business\Business.csproj" />
+	  <ProjectReference Include="..\Common\Common.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Platforms\Android\Services\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Pages\DetailPage.xaml.cs">
+	    <DependentUpon>DetailPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Platforms\Windows\FileSaver.cs">
+	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="App.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="AppShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\DetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>
