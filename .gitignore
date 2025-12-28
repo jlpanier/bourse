@@ -1,0 +1,17 @@
+﻿################################################################################
+# Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Bourse/obj
+/Business/obj
+/Common/bin/Debug/net9.0
+/Common/obj
+/Bourse/bin/Debug
+/Bourse/Platforms/iOS
+/Bourse/Platforms/MacCatalyst
+/Business/bin/Debug/net9.0
+/Repository/bin/Debug/net9.0
+/Repository/obj
+/WsBoursorama/bin/Debug/net9.0
+/WsBoursorama/obj
