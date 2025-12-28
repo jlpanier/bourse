@@ -155,7 +155,8 @@ namespace Bourse.ViewModels
         {
             if (e.Result is List<Business.Share> data)
             {
-                Items = ShareViewModel.Convert(data);  
+                var items = ShareViewModel.Convert(data);
+                Items = new ObservableCollection<ShareViewModel>(items.OrderBy(_=>_.Consensus));  
             }
         }
 
