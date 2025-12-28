@@ -53,7 +53,7 @@
 		</MauiIcon>
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.jpg" Color="#17171a" />
+		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#17171a" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
