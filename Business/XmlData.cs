@@ -8,7 +8,7 @@ namespace Business
     public class XmlData
     {
         [XmlElement("shares")]
-        public List<XmlShare> Shares { get; set; }
+        public List<XmlShare>? Shares { get; set; }
     }
 
     public class XmlShare

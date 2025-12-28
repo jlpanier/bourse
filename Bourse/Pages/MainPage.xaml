@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:Bourse.ViewModels"
+    x:Class="Bourse.Pages.MainPage"
+    >
+    <AbsoluteLayout x:DataType="viewmodel:MainViewModel">
+
+        <CollectionView 
+            ItemsSource="{Binding Items} " 
+            SelectionMode="None"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            >
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="1" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type viewmodel:MainViewModel}">
+                    <SwipeView>
+                        <Border 
+                            Margin="30,50,50,50" 
+                            Padding="10,0,10,0" 
+                            StrokeShape="RoundRectangle 5,5,5,5"
+                            Background="GhostWhite"
+                            Stroke="Indigo"
+                            StrokeThickness="2">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditCommand}"
+                                                          CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Column="0" Grid.Row="0" Text="{Binding Name}" TextColor="Blue" FontSize="20"  HorizontalTextAlignment="Start" />
+                                <Label Grid.Column="0" Grid.Row="1" Text="{Binding Code}" TextColor="Blue" FontSize="14"  HorizontalTextAlignment="Start" />
+                                <Label Grid.Column="1" Grid.Row="0"  Grid.RowSpan="2" Text="{Binding Amount}" TextColor="Blue" FontSize="18"  HorizontalTextAlignment="Center" />
+                                <Label Grid.Column="2" Grid.Row="0" Text="{Binding Consensus}" TextColor="Blue" FontSize="18"  HorizontalTextAlignment="End" />
+                                <Label Grid.Column="2" Grid.Row="1" Text="{Binding Rendement}" TextColor="Blue" FontSize="18"  HorizontalTextAlignment="End" />
+                                <Label Grid.Column="2" Grid.Row="2" Text="{Binding Risk}" TextColor="Blue" FontSize="18"  HorizontalTextAlignment="End" />
+                            </Grid>
+                        </Border>
+
+
+                        <!-- Actions quand on swipe à gauche -->
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem 
+                                    Text="Supprimer"
+                                   BackgroundColor="Red"
+                                   IconImageSource="poubelle.png"
+                                   Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}"
+                                   CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+
+                        <!-- Actions quand on swipe à droite -->
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Modifier"
+                                   BackgroundColor="Blue"
+                                   IconImageSource="crayon.png"
+                                   Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditCommand}"
+                                   CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                    </SwipeView>
+
+                    
+                 </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+ 
+        <Button
+            Text="+"
+            BackgroundColor="DodgerBlue"
+            CornerRadius="30"
+            HorizontalOptions="End"
+            WidthRequest="50"
+            HeightRequest="50"
+            Command="{Binding AddCommand}"
+            AbsoluteLayout.LayoutBounds="1,1,70,80"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            Shadow="{Shadow Brush=Black, Opacity=0.4, Radius=10}"
+            Margin="0,0,10,10"
+            />
+
+        <Button
+            Text="&#x1F4BE;"
+            FontSize="24"
+            BackgroundColor="DodgerBlue"
+            CornerRadius="30"
+            WidthRequest="50"
+            HeightRequest="50"
+            Command="{Binding DownloadCommand}"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="1,1,70,200"
+            Shadow="{Shadow Brush=Black, Opacity=0.4, Radius=10}"
+            Padding="5,5,5,10"
+            />
+
+        <Button
+            Text="{Binding Toggle}"
+            FontSize="30"
+            BackgroundColor="DodgerBlue"
+            CornerRadius="30"
+            WidthRequest="50"
+            HeightRequest="50"
+            Command="{Binding SaveCommand}"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="1,1,70,310"
+            Shadow="{Shadow Brush=Black, Opacity=0.4, Radius=10}"
+            Padding="0,0,0,5"
+            />
+
+    </AbsoluteLayout>
+
+</ContentPage>
+    

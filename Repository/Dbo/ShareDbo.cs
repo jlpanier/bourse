@@ -4,7 +4,20 @@ namespace Repository.Dbo
 {
     public class ShareDbo: BaseDbo
     {
-        public static IEnumerable<ShareEntity> Get()
+        public static ShareDbo Instance
+        {
+            get 
+            {
+                if (_instance == null)
+                {
+                    _instance = new ShareDbo();
+                }
+                return _instance;
+            }
+        }
+        private static ShareDbo? _instance;
+
+        public IEnumerable<ShareEntity> Get()
         {
             lock (dbLock)
             {
@@ -12,7 +25,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static IEnumerable<ShareEntity> Get(string code)
+        public IEnumerable<ShareEntity> Get(string code)
         {
             lock (dbLock)
             {
@@ -20,7 +33,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static int RemoveById(Guid id)
+        public int RemoveById(Guid id)
         {
             lock (dbLock)
             {

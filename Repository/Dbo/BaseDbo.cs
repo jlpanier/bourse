@@ -8,9 +8,10 @@ namespace Repository.Dbo
     {
         protected static readonly object dbLock = new object();
 
-        private static string dbPath = null;
-
-        private static SQLiteConnection _db = null;
+        /// <summary>
+        /// Chemin de la base de données
+        /// </summary>
+        public static string DbPath = string.Empty;
 
         protected BaseDbo() { }
 
@@ -20,24 +21,38 @@ namespace Repository.Dbo
             {
                 if (_db == null)
                 {
-                    _db = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex, false);
+                    _db = new SQLiteConnection(DbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex, false);
                 }
                 return _db;
             }
         }
+        private static SQLiteConnection? _db = null;
+
+        /// <summary>
+        /// VRAI, si le fichier de la base de données existe
+        /// </summary>
+        /// <returns></returns>
+        public bool IsReady() => !string.IsNullOrEmpty(DbPath) && File.Exists(DbPath);
 
         /// <summary>
         /// Initialisation
         /// </summary>
         /// <param name="databasePath"></param>
         /// <param name="busyTimeout"></param>
-        public static void Init(string databasePath, double busyTimeout = 30)
+        public void Init(string databasePath, double busyTimeout = 30)
         {
-            dbPath = databasePath;
+            DbPath = databasePath;
+            if (!File.Exists(DbPath)) throw new FileNotFoundException("File does not exists", DbPath);
             Db.BusyTimeout = TimeSpan.FromSeconds(busyTimeout);
+            CreateTable<ShareEntity>();
+            AddColumn("SHARE", "AMOUNT", "REAL");
+            AddColumn("SHARE", "RISK", "REAL");
+            AddColumn("SHARE", "CONSENSUS", "REAL");
+            AddColumn("SHARE", "RENDEMENT", "REAL");
+            AddColumn("SHARE", "DATEON", "DATETIME");
         }
 
-        public static void Close()
+        public void Close()
         {
             if (_db != null)
             {
@@ -46,7 +61,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static void Save(BaseEntity entity)
+        public void Save(BaseEntity entity)
         {
             Db.InsertOrReplace(entity);
         }
@@ -84,7 +99,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static int AddColumn(string tableName, string columnName, string type, string lenght)
+        public int AddColumn(string tableName, string columnName, string type, string lenght)
         {
             lock (dbLock)
             {
@@ -100,7 +115,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static int AddColumn(string tableName, string columnName, string type)
+        public int AddColumn(string tableName, string columnName, string type)
         {
             lock (dbLock)
             {
@@ -116,7 +131,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static T ExecuteScalar<T>(string query, params object[] args)
+        public T ExecuteScalar<T>(string query, params object[] args)
         {
             lock (Db)
             {
@@ -124,7 +139,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static int Execute(string query, params object[] args)
+        public int Execute(string query, params object[] args)
         {
             lock (Db)
             {
@@ -132,7 +147,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static int Insert(object obj)
+        public int Insert(object obj)
         {
             lock (Db)
             {
@@ -140,7 +155,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static int Update(object obj)
+        public int Update(object obj)
         {
             lock (Db)
             {
@@ -148,7 +163,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static int Delete(object objectToDelete)
+        public int Delete(object objectToDelete)
         {
             lock (Db)
             {
@@ -156,7 +171,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static int Delete<T>(object primaryKey)
+        public int Delete<T>(object primaryKey)
         {
             lock (Db)
             {
@@ -164,7 +179,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static int DeleteAll<T>()
+        public int DeleteAll<T>()
         {
             lock (Db)
             {
@@ -172,7 +187,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static void CreateTable<T>() where T : class
+        public void CreateTable<T>() where T : class
         {
             lock (Db)
             {
@@ -180,7 +195,7 @@ namespace Repository.Dbo
             }
         }
 
-        public static void DropTable<T>() where T : class
+        public void DropTable<T>() where T : class
         {
             lock (Db)
             {

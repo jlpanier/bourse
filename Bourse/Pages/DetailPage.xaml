@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:Bourse.ViewModels"
+    x:Class="Bourse.Pages.DetailPage"
+    >
+    <VerticalStackLayout Padding="20" Spacing="16">
+
+        <Label Text="Code de l'action" FontAttributes="Bold" />
+        <Entry x:Name="Code" Placeholder="Ex : FR, ORA, BN, MC" />
+
+        <Label Text="Nom de la société" FontAttributes="Bold" />
+        <Entry x:Name="Name" Placeholder="Ex : LVMH, Orange..." />
+
+        <Label Text="URL" FontAttributes="Bold" />
+        <Entry x:Name="Url" Keyboard="Url" Placeholder="https://..." />
+
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+            <Label Text="Dans le CAC40 ?" VerticalOptions="Center" />
+            <Switch x:Name="SwitchCAC40"  />
+        </HorizontalStackLayout>
+
+        <Button
+            Text="&#x2713;"
+            FontSize="30"
+            BackgroundColor="DodgerBlue"
+            CornerRadius="30"
+            WidthRequest="50"
+            HeightRequest="50"
+            Clicked="OnValidateClicked"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0,0,0,0"
+            Shadow="{Shadow Brush=Black, Opacity=0.4, Radius=10}"
+            Padding="0,0,0,5"
+            />
+
+    </VerticalStackLayout>
+
+</ContentPage>
+    

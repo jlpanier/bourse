@@ -5,7 +5,7 @@ namespace WsBoursorama
     {
         public double Amount { get; set; }
 
-        public string Risk { get; set; }
+        public double Risk { get; set; }
 
         public double Consensus { get; set; }
 
