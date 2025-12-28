@@ -21,13 +21,15 @@ namespace Business
 
         public DateTime DateMaj => Item.DATEMAJ;
 
+        public DateTime DateOn => Item.DATEON;
+
         public bool IsCac40 => Item.CAC40;
 
         public double Amount => Item.AMOUNT;
 
         public double Consensus => Item.CONSENSUS;
 
-        public double Rendement => Item.RENDEMENT;
+        public double Rendement => Item.RENDEMENT/100;
 
         public double Risk => Item.RISK;
 
@@ -107,17 +109,41 @@ namespace Business
             ShareDbo.Instance.RemoveById(Item.ID);
         }
 
+        public bool ShouldUpdate()
+        {
+            DateTime dt;
+            if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday)
+            {
+                dt = DateTime.Now.AddDays(-1);
+                dt = new DateTime(dt.Year, dt.Month, dt.Day, 17, 30, 0);
+            }
+            else if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+            {
+                dt = DateTime.Now.AddDays(-2);
+                dt = new DateTime(dt.Year, dt.Month, dt.Day, 17, 30, 0);
+            }
+            else
+            {
+                dt = DateTime.Now;
+                dt = new DateTime(dt.Year, dt.Month, dt.Day, 17, 30, 0);
+            }
+            return dt > DateOn;
+        }
+
         public void Fetch()
         {
-            BoursoramaResponse response = WsBoursorama.WsBoursorama.WebSite(Url);
-            if (response != null) 
+            if(ShouldUpdate())
             {
-                Item.AMOUNT = response.Amount;
-                Item.CONSENSUS = response.Consensus;
-                Item.DATEON = DateTime.Now;
-                Item.RENDEMENT = response.Rendement;
-                Item.RISK = response.Risk;
-                ShareDbo.Instance.Save(Item);
+                BoursoramaResponse response = WsBoursorama.WsBoursorama.WebSite(Url);
+                if (response != null)
+                {
+                    Item.AMOUNT = response.Amount;
+                    Item.CONSENSUS = response.Consensus;
+                    Item.DATEON = DateTime.Now;
+                    Item.RENDEMENT = response.Rendement;
+                    Item.RISK = response.Risk;
+                    ShareDbo.Instance.Save(Item);
+                }
             }
         }
      }

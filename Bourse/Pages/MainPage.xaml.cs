@@ -44,7 +44,7 @@ namespace Bourse.Pages
                 {
                     await Task.Delay(100);
                 }
-                await vm.Init();
+                vm.Init();
             }
         }
     }

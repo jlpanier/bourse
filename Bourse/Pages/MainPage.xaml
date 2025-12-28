@@ -19,11 +19,11 @@
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type viewmodel:MainViewModel}">
+                <DataTemplate x:DataType="{x:Type viewmodel:ShareViewModel}">
                     <SwipeView>
                         <Border 
-                            Margin="30,50,50,50" 
-                            Padding="10,0,10,0" 
+                            Margin="5,1,5,0" 
+                            Padding="5,0,5,0" 
                             StrokeShape="RoundRectangle 5,5,5,5"
                             Background="GhostWhite"
                             Stroke="Indigo"
@@ -36,19 +36,19 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="70"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
 
-                                <Label Grid.Column="0" Grid.Row="0" Text="{Binding Name}" TextColor="Blue" FontSize="20"  HorizontalTextAlignment="Start" />
+                                <Label Grid.Column="0" Grid.Row="0" Text="{Binding Name}" TextColor="Blue" FontSize="18"  HorizontalTextAlignment="Start" />
                                 <Label Grid.Column="0" Grid.Row="1" Text="{Binding Code}" TextColor="Blue" FontSize="14"  HorizontalTextAlignment="Start" />
-                                <Label Grid.Column="1" Grid.Row="0"  Grid.RowSpan="2" Text="{Binding Amount}" TextColor="Blue" FontSize="18"  HorizontalTextAlignment="Center" />
-                                <Label Grid.Column="2" Grid.Row="0" Text="{Binding Consensus}" TextColor="Blue" FontSize="18"  HorizontalTextAlignment="End" />
-                                <Label Grid.Column="2" Grid.Row="1" Text="{Binding Rendement}" TextColor="Blue" FontSize="18"  HorizontalTextAlignment="End" />
-                                <Label Grid.Column="2" Grid.Row="2" Text="{Binding Risk}" TextColor="Blue" FontSize="18"  HorizontalTextAlignment="End" />
+                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Amount, StringFormat='{}{0:C}'}" TextColor="Blue" FontSize="14"  HorizontalTextAlignment="Center" />
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Rendement, StringFormat='{}{0:P2}'}" TextColor="Blue" FontSize="14"  HorizontalTextAlignment="End" />
+                                <Label Grid.Column="2" Grid.Row="0" Text="{Binding Consensus, StringFormat='{}{0:F2}'}" TextColor="Blue" FontSize="14"  HorizontalTextAlignment="End" />
+                                <Label Grid.Column="2" Grid.Row="1" Text="{Binding Risk, StringFormat='{}{0:F2}'}" TextColor="Blue" FontSize="14"  HorizontalTextAlignment="End" />
                             </Grid>
                         </Border>
 
@@ -111,19 +111,32 @@
             />
 
         <Button
-            Text="{Binding Toggle}"
+            Text="&#x1F4E5;"
             FontSize="30"
             BackgroundColor="DodgerBlue"
             CornerRadius="30"
             WidthRequest="50"
             HeightRequest="50"
-            Command="{Binding SaveCommand}"
+            Command="{Binding UpdateCommand}"
             AbsoluteLayout.LayoutFlags="PositionProportional"
             AbsoluteLayout.LayoutBounds="1,1,70,310"
             Shadow="{Shadow Brush=Black, Opacity=0.4, Radius=10}"
             Padding="0,0,0,5"
             />
 
+        <Button
+            Text="{Binding SortBy}"
+            FontSize="25"
+            BackgroundColor="DodgerBlue"
+            CornerRadius="30"
+            WidthRequest="50"
+            HeightRequest="50"
+            Command="{Binding OrderByCommand}"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="1,1,70,430"
+            Shadow="{Shadow Brush=Black, Opacity=0.4, Radius=10}"
+            Padding="0,0,0,0"
+            />
     </AbsoluteLayout>
 
 </ContentPage>
