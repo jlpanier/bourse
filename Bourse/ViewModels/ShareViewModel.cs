@@ -29,24 +29,13 @@ namespace Bourse.ViewModels
             item.Remove();
         }
 
-        [RelayCommand]
-        async Task Tap(ShareViewModel itemviewmodel)
-        {
-            var navigationParameters = new Dictionary<string, object>
-            {
-                ["item"] = itemviewmodel.Item
-            };
-            await Shell.Current.GoToAsync($"{nameof(BoursoramaPage)}", navigationParameters);
-        }
-
-
         public Color BackgroundColor 
         {
             get
             {
                 const int max = 3;
-                double coeff = (max-Consensus+1)/max;
-                int green = Math.Min((int)(coeff * 255),255);
+                double coeff = (max-Consensus+1.2)/max;
+                int green = Math.Max(Math.Min((int)(coeff * 255),255),0);
                 int red = (int)(255 - green);
                 return Color.FromRgb(red, green, 128);
             
