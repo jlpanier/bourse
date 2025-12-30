@@ -15,6 +15,7 @@ namespace Bourse
 
             Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
             Routing.RegisterRoute(nameof(DetailPage), typeof(DetailPage));
+            Routing.RegisterRoute(nameof(BoursoramaPage), typeof(BoursoramaPage));
         }
 
         public static async Task DisplaySnackbarAsync(string message)

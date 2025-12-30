@@ -32,6 +32,9 @@ namespace Bourse.ViewModels
         public string sortBy = OrderingBy.Consensus.GetStringValue();
 
         [ObservableProperty]
+        public bool canDowload = true;
+
+        [ObservableProperty]
         private ObservableCollection<ShareViewModel> items;
 
          public MainViewModel()
@@ -101,6 +104,16 @@ namespace Bourse.ViewModels
             worker.RunWorkerAsync();
         }
 
+        [RelayCommand]
+        async Task Tap(ShareViewModel itemviewmodel)
+        {
+            var navigationParameters = new Dictionary<string, object>
+            {
+                ["item"] = itemviewmodel.Item
+            };
+            await Shell.Current.GoToAsync($"{nameof(BoursoramaPage)}", navigationParameters);
+        }
+
         private void OnUpdateWork(object? sender, DoWorkEventArgs e)
         {
             Items.ForEach(_=>_.Fetch());
@@ -156,7 +169,8 @@ namespace Bourse.ViewModels
             if (e.Result is List<Business.Share> data)
             {
                 var items = ShareViewModel.Convert(data);
-                Items = new ObservableCollection<ShareViewModel>(items.OrderBy(_=>_.Consensus));  
+                Items = new ObservableCollection<ShareViewModel>(items.OrderBy(_=>_.Consensus));
+                CanDowload = data.Any(_=>_.ShouldUpdate);
             }
         }
 
