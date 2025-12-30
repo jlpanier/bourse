@@ -45,46 +45,71 @@ namespace WsBoursorama
                     int index = responses.IndexOf("</head>");
                     string body = responses.Substring(index + "</head>".Length);
                     index = body.IndexOf("data-ist-last>");
-                    string text1 = body.Substring(index + "data-ist-last>".Length);
-                    index = text1.IndexOf("</span>");
-                    string text2 = text1.Substring(0, index);
-                    if (double.TryParse(text2.Replace(".",","), out double amount))
+                    if (index >= 0)
                     {
-                        result.Amount = amount;
+                        string text1 = body.Substring(index + "data-ist-last>".Length);
+                        index = text1.IndexOf("</span>");
+                        if (index >= 0)
+                        {
+                            string text2 = text1.Substring(0, index);
+                            if (double.TryParse(text2.Replace(".", ","), out double amount))
+                            {
+                                result.Amount = amount;
+                            }
+                        }
+                        index = text1.IndexOf("c-median-gauge__tooltip");
+                        if (index >= 0)
+                        {
+                            string text3 = text1.Substring(index + "c-median-gauge__tooltip".Length + 5);
+                            index = text3.IndexOf("</div>");
+                            if (double.TryParse(text3.Substring(0, index - 2).Trim().Replace("/100", ""), out double val))
+                            {
+                                result.Risk = val;
+                            }
+                            else
+                            {
+                                result.Risk = 0;
+                            }
+                        index = text3.IndexOf("c-median-gauge__tooltip");
+                        if (index >= 0)
+                        {
+                            string text4 = text3.Substring(index + "c-median-gauge__tooltip".Length + 5);
+                            index = text4.IndexOf("</div>");
+                            if (index >= 0)
+                            {
+                                string text5 = text4.Substring(0, index - 2).Trim();
+                                if (double.TryParse(text5.Replace(".", ","), out double consensus))
+                                {
+                                    result.Consensus = consensus;
+                                }
+                            }
+                            index = text4.IndexOf("c-table__cell c-table__cell--dotted c-table__cell--inherit-height c-table__cell--align-top / u-text-left u-text-normal-whitespace");
+                            if (index >= 0)
+                            {
+                                string text6 = text4.Substring(index + "c-table__cell c-table__cell--dotted c-table__cell--inherit-height c-table__cell--align-top / u-text-left u-text-normal-whitespace".Length + 2);
+                                index = text6.IndexOf("Rendement");
+                                if (index >= 0)
+                                {
+                                    string text7 = text6.Substring(index);
+                                    index = text7.IndexOf("u-ellipsis");
+                                    if (index >= 0)
+                                    {
+                                        string text8 = text7.Substring(index + "u-ellipsis".Length + 2);
+                                        index = text8.IndexOf("</td>");
+                                        if (index >= 0)
+                                        {
+                                            string text9 = text8.Substring(0, index).Trim().Replace("%", "");
+                                            if (double.TryParse(text9.Replace(".", ","), out double rendement))
+                                            {
+                                                result.Rendement = rendement;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        }
                     }
-                    index = text1.IndexOf("c-median-gauge__tooltip");
-                    string text3 = text1.Substring(index+ "c-median-gauge__tooltip".Length +5);
-                    index = text3.IndexOf("</div>");
-                    if (double.TryParse(text3.Substring(0, index - 2).Trim().Replace("/100", ""), out double val))
-                    {
-                        result.Risk = val;
-                    }
-                    else
-                    {
-                        result.Risk = 0;
-                    }
-
-                    index = text3.IndexOf("c-median-gauge__tooltip");
-                    string text4 = text3.Substring(index + "c-median-gauge__tooltip".Length + 5);
-                    index = text4.IndexOf("</div>");
-                    string text5 = text4.Substring(0, index - 2).Trim();
-                    if (double.TryParse(text5.Replace(".", ","), out double consensus))
-                    {
-                        result.Consensus = consensus;
-                    }
-                    index = text4.IndexOf("c-table__cell c-table__cell--dotted c-table__cell--inherit-height c-table__cell--align-top / u-text-left u-text-normal-whitespace");
-                    string text6 = text4.Substring(index + "c-table__cell c-table__cell--dotted c-table__cell--inherit-height c-table__cell--align-top / u-text-left u-text-normal-whitespace".Length + 2);
-                    index = text6.IndexOf("Rendement");
-                    string text7 = text6.Substring(index);
-                    index = text7.IndexOf("u-ellipsis");
-                    string text8 = text7.Substring(index + "u-ellipsis".Length + 2);
-                    index = text8.IndexOf("</td>");
-                    string text9 = text8.Substring(0,index).Trim().Replace("%", "");
-                    if (double.TryParse(text9.Replace(".", ","), out double rendement))
-                    {
-                        result.Rendement = rendement;
-                    }
-
 
                     dataStream.Close();
                     response.Close();
