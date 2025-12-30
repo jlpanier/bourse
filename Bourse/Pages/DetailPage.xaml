@@ -23,7 +23,7 @@
 
         <Button
             Text="&#x2713;"
-            FontSize="30"
+            FontSize="30"   
             BackgroundColor="DodgerBlue"
             CornerRadius="30"
             WidthRequest="50"

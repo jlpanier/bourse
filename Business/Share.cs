@@ -109,30 +109,36 @@ namespace Business
             ShareDbo.Instance.RemoveById(Item.ID);
         }
 
-        public bool ShouldUpdate()
+        /// <summary>
+        /// VRAI, si la valeur de l'action doit être téléchargée
+        /// </summary>
+        public bool ShouldUpdate
         {
-            DateTime dt;
-            if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday)
+            get
             {
-                dt = DateTime.Now.AddDays(-1);
-                dt = new DateTime(dt.Year, dt.Month, dt.Day, 17, 30, 0);
+                DateTime dt;
+                if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    dt = DateTime.Now.AddDays(-1);
+                    dt = new DateTime(dt.Year, dt.Month, dt.Day, 17, 30, 0);
+                }
+                else if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    dt = DateTime.Now.AddDays(-2);
+                    dt = new DateTime(dt.Year, dt.Month, dt.Day, 17, 30, 0);
+                }
+                else
+                {
+                    dt = DateTime.Now;
+                    dt = new DateTime(dt.Year, dt.Month, dt.Day, 17, 30, 0);
+                }
+                return dt > DateOn;
             }
-            else if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
-            {
-                dt = DateTime.Now.AddDays(-2);
-                dt = new DateTime(dt.Year, dt.Month, dt.Day, 17, 30, 0);
-            }
-            else
-            {
-                dt = DateTime.Now;
-                dt = new DateTime(dt.Year, dt.Month, dt.Day, 17, 30, 0);
-            }
-            return dt > DateOn;
         }
 
         public void Fetch()
         {
-            if(ShouldUpdate())
+            if(ShouldUpdate)
             {
                 BoursoramaResponse response = WsBoursorama.WsBoursorama.WebSite(Url);
                 if (response != null)
