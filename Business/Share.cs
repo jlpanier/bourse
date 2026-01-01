@@ -127,6 +127,11 @@ namespace Business
                     dt = DateTime.Now.AddDays(-2);
                     dt = new DateTime(dt.Year, dt.Month, dt.Day, 17, 30, 0);
                 }
+                else if (DateTime.Now.Hour < 8)
+                {
+                    dt = DateTime.Now.AddDays(-1);
+                    dt = new DateTime(dt.Year, dt.Month, dt.Day, 17, 30, 0);
+                }
                 else
                 {
                     dt = DateTime.Now;
