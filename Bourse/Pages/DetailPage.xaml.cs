@@ -1,12 +1,17 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Security.Cryptography;
+﻿using System.ComponentModel.DataAnnotations;
+
 
 namespace Bourse.Pages
 {
+    /// <summary>
+    /// Détail d'une action, permet de créer ou modifier une action
+    /// </summary>
     public partial class DetailPage : ContentPage, IQueryAttributable
     {
-        Business.Share? _item;
+        /// <summary>
+        /// Détail de l'action
+        /// </summary>
+        private Business.Share? _item;
 
         public DetailPage()
         {
@@ -31,6 +36,9 @@ namespace Bourse.Pages
             }
         }
 
+        /// <summary>
+        /// Validation des données et création ou mise à jour de l'action, puis retour à la page précédente
+        /// </summary>
         private async void OnValidateClicked(object sender, EventArgs e)
         {
             try
@@ -44,6 +52,8 @@ namespace Bourse.Pages
                 {
                     _item.Update(Code.Text, Name.Text, Url.Text, SwitchCAC40.IsToggled);
                 }
+                _item.Fetch();
+
 
                 await Shell.Current.GoToAsync("..", new Dictionary<string, object>
                 {
@@ -60,6 +70,9 @@ namespace Bourse.Pages
             }
         }
 
+        /// <summary>
+        /// Vérification des données saisies, lance une ValidationException en cas d'erreur
+        /// </summary>
         private void Validation()
         {   
             if (string.IsNullOrEmpty(Code.Text))

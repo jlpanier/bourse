@@ -11,8 +11,14 @@ using System.ComponentModel;
 
 namespace Bourse.ViewModels
 {
+    /// <summary>
+    /// Viewmodel de la page principale, gère la liste des actions et les interactions avec celle ci
+    /// </summary>
     public partial class MainViewModel : ObservableObject
     {
+        /// <summary>
+        /// Symbol pour le menu de tri, et ordre de tri
+        /// </summary>
         private enum OrderingBy 
         {
             [StringValue("\U0001F520")]
@@ -33,7 +39,6 @@ namespace Bourse.ViewModels
 
         [ObservableProperty]
         public bool canDowload = true;
-
         [ObservableProperty]
         private ObservableCollection<ShareViewModel> items;
 
@@ -56,14 +61,6 @@ namespace Bourse.ViewModels
                 ["item"] = itemviewmodel.Item
             };
             await Shell.Current.GoToAsync($"{nameof(DetailPage)}", navigationParameters);
-        }
-
-        [RelayCommand]
-        async Task Delete(ShareViewModel item)
-        {
-            item.Remove();
-            Items.Remove(item);
-            OnPropertyChanged(nameof(Items));
         }
 
         [RelayCommand]
@@ -96,15 +93,6 @@ namespace Bourse.ViewModels
         }
 
         [RelayCommand]
-        private void Update()
-        {
-            var worker = new BackgroundWorker();
-            worker.DoWork += OnUpdateWork;
-            worker.RunWorkerCompleted += OnUpdateCompleted;
-            worker.RunWorkerAsync();
-        }
-
-        [RelayCommand]
         async Task Tap(ShareViewModel itemviewmodel)
         {
             var navigationParameters = new Dictionary<string, object>
@@ -114,16 +102,63 @@ namespace Bourse.ViewModels
             await Shell.Current.GoToAsync($"{nameof(BoursoramaPage)}", navigationParameters);
         }
 
-        private void OnUpdateWork(object? sender, DoWorkEventArgs e)
+        [RelayCommand]
+        private void Update()
         {
-            Items.ForEach(_=>_.Fetch());
+            var worker = new BackgroundWorker();
+            worker.WorkerReportsProgress = true;
+            worker.DoWork += OnUpdateWork;
+            worker.RunWorkerCompleted += OnUpdateCompleted;
+            worker.ProgressChanged += OnUpdateReport;
+            worker.RunWorkerAsync();
         }
 
+        /// <summary>
+        /// Mise à jour des valeurs des actions
+        /// </summary>
+        private void OnUpdateWork(object? sender, DoWorkEventArgs e)
+        {
+            if (sender is BackgroundWorker worker)
+            {
+                var i = 1;
+                Items.ForEach(_ =>
+                {
+                    if (_.Fetch() && i % 4 == 0)
+                    {
+                        worker.ReportProgress(i++, $"En cours...");
+                    }
+                    i++;
+                });
+            }
+        }
+
+        /// <summary>
+        /// Rafraichissement de l'affichage lors de la recherche
+        /// </summary>
+        private void OnUpdateReport(object? sender, ProgressChangedEventArgs e)
+        {
+            Load();
+        }
+
+        /// <summary>
+        /// Rafraichissement de l'affichage après la recherche
+        /// </summary>
         private void OnUpdateCompleted(object? sender, RunWorkerCompletedEventArgs e)
         {
             Load();
         }
 
+        /// <summary>
+        /// Mise à jour des valeurs des actions en background (démarrage de l'appli)
+        /// </summary>
+        public async Task FetchAsync()
+        {
+            await Task.Run(() => Items.ForEach(_ => _.Fetch()));
+        }
+
+        /// <summary>
+        /// Mise à disposition de la base de données
+        /// </summary>
         [RelayCommand]
         private async Task Download()
         {
@@ -139,12 +174,10 @@ namespace Bourse.ViewModels
             }
         }
 
-        public void Init()
-        {
-            Load();
-        }
-
-        private void Load()
+        /// <summary>
+        /// Rafraichissement des données via la base de données
+        /// </summary>
+        public void Load()
         {
             var worker = new BackgroundWorker();
             worker.DoWork += OnWork;
@@ -152,6 +185,9 @@ namespace Bourse.ViewModels
             worker.RunWorkerAsync(); 
         }
 
+        /// <summary>
+        /// Rafraichissement des données via la base de données
+        /// </summary>
         private void OnWork(object? sender, DoWorkEventArgs e)
         {
             try
@@ -164,6 +200,9 @@ namespace Bourse.ViewModels
             }
         }
 
+        /// <summary>
+        /// Rafraichissement des données via la base de données
+        /// </summary>
         private void OnCompleted(object? sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Result is List<Business.Share> data)
