@@ -3,9 +3,9 @@ using Bourse.Pages;
 using Common;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DevExpress.Maui.Mvvm;
 using FFImageLoading.Helpers;
 using Repository.Dbo;
+using Syncfusion.Maui.DataSource.Extensions;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 

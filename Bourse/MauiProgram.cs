@@ -1,12 +1,10 @@
 ﻿using CommunityToolkit.Maui;
-using DevExpress.Maui;
 using FFImageLoading.Maui;
 using Bourse.Interfaces;
 using Bourse.Pages;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
 using Syncfusion.Maui.Toolkit.Hosting;
-using FFImageLoading.Helpers;
 
 namespace Bourse
 {
@@ -21,8 +19,6 @@ namespace Bourse
                 .ConfigureSyncfusionToolkit()
                 .ConfigureSyncfusionCore()
                 .UseFFImageLoading()
-                .UseDevExpressCharts()
-                .UseDevExpress()
                 .ConfigureMauiHandlers(handlers =>
                 {
 #if IOS || MACCATALYST
