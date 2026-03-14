@@ -2,7 +2,6 @@
 using FFImageLoading.Maui;
 using Bourse.Interfaces;
 using Bourse.Pages;
-using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
 using Syncfusion.Maui.Toolkit.Hosting;
 
@@ -34,10 +33,6 @@ namespace Bourse
                     fonts.AddFont("fa-solid-900.ttf", "FontAwesome");
                 });
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-    		builder.Services.AddLogging(configure => configure.AddDebug());
-#endif
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<IFileSaver, Bourse.Interfaces.FileSaver>();
             builder.Services.AddSingleton<IAssetService, AssetService>();
