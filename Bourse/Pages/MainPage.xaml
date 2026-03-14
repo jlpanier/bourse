@@ -87,10 +87,10 @@
                         <SwipeView.LeftItems>
                             <SwipeItems>
                                 <SwipeItem 
-                                    Text="Supprimer"
+                                   Text="Boursorama"
                                    BackgroundColor="Red"
                                    IconImageSource="poubelle.png"
-                                   Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}"
+                                   Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=TapCommand}"
                                    CommandParameter="{Binding .}" />
                             </SwipeItems>
                         </SwipeView.LeftItems>

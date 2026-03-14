@@ -14,13 +14,13 @@ namespace Business
     public class XmlShare
     {
         [XmlElement("code")]
-        public string Code { get; set; }
+        public string Code { get; set; } = "";
 
         [XmlElement("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
 
         [XmlElement("url")]
-        public string Url { get; set; }
+        public string Url { get; set; } = "";
 
         [XmlElement("cac40")]
         public bool CAC40 { get; set; }
@@ -41,7 +41,7 @@ namespace Business
         public DateTime DateOn { get; set; }
 
         [XmlElement("risk")]
-        public string Risk { get; set; }
+        public string Risk { get; set; } = "";
 
         [XmlElement("consensus")]
         public double Concensus { get; set; }

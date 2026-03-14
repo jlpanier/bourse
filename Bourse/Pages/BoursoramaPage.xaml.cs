@@ -1,6 +1,9 @@
 
 namespace Bourse.Pages;
 
+/// <summary>
+/// Webview affichage de la page boursorama de l'action sélectionnée
+/// </summary>
 public partial class BoursoramaPage : ContentPage, IQueryAttributable
 {
 	public BoursoramaPage()

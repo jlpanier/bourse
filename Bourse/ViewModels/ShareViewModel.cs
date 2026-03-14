@@ -4,8 +4,14 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Bourse.ViewModels
 {
+    /// <summary>
+    /// ViewModdel de chaque action
+    /// </summary>
     public partial class ShareViewModel : ObservableObject
     {
+        /// <summary>
+        /// Conversion ViewModdel de chaque action
+        /// </summary>
         public static List<ShareViewModel> Convert(List<Business.Share> data)
         {
             var items = new List<ShareViewModel>();
@@ -23,12 +29,9 @@ namespace Bourse.ViewModels
             await Shell.Current.GoToAsync($"{nameof(DetailPage)}", navigationParameters);
         }
 
-        [RelayCommand]
-        async Task Delete(ShareViewModel item)
-        {
-            item.Remove();
-        }
-
+        /// <summary>
+        /// Couleur de background reflètant le consensus
+        /// </summary>
         public Color BackgroundColor 
         {
             get
@@ -43,7 +46,7 @@ namespace Bourse.ViewModels
         }
 
         /// <summary>
-        /// Hauteur jaune de la barre 
+        /// Hauteur jaune de la barre taux
         /// </summary>
         public int HeighRate
         {
@@ -60,6 +63,9 @@ namespace Bourse.ViewModels
         }
         private int? _heightRate;
 
+        /// <summary>
+        /// Hauteur verte de la barre concensus
+        /// </summary>
         public int HeighConcensus
         {
             get
@@ -76,6 +82,9 @@ namespace Bourse.ViewModels
         }
         private int? _heightConcensus;
 
+        /// <summary>
+        /// Hauteur rouge de la barre risk
+        /// </summary>
         public int HeighRisk
         {
             get
@@ -91,22 +100,46 @@ namespace Bourse.ViewModels
         }
         private int? _heightRisk;
 
+        /// <summary>
+        /// entité de la base de données
+        /// </summary>
         public readonly Business.Share Item;
 
         #region Propriétés
 
+        /// <summary>
+        /// Code de l'action
+        /// </summary>
         public string Code => Item.Code;
 
-        public string Cac => Item.IsCac40 ? "CAC" : string.Empty;
+        /// <summary>
+        /// CAC si action du CAC40 vide sion
+        /// </summary>
+        public string Cac => Item.IsCac40 ? $"CAC" : string.Empty;
 
-        public string Name => Item.Name;
+        /// <summary>
+        /// Nom de l'action
+        /// </summary>
+        public string Name => Item.ShouldUpdate ? $"\U0001F504 {Item.Name}" : Item.Name;
 
+        /// <summary>
+        /// Montant de l'action
+        /// </summary>
         public double Amount => Item.Amount;
 
+        /// <summary>
+        /// Rendement de l'action
+        /// </summary>
         public double Rendement => Item.Rendement;
 
+        /// <summary>
+        /// Risque boursorama associé à l'action
+        /// </summary>
         public double Risk => Item.Risk;
 
+        /// <summary>
+        /// Concensus boursorama associé à l'action
+        /// </summary>
         public double Consensus => Item.Consensus;
 
         #endregion
@@ -116,8 +149,11 @@ namespace Bourse.ViewModels
             Item = item;
         }
 
-        public void Fetch() => Item.Fetch();
+        /// <summary>
+        /// Charge les valeurs de l'action en consultant la page boursorama
+        /// </summary>
+        /// <returns>VRAI, si mise à jour effectuée</returns>
+        public bool Fetch() => Item.Fetch();
 
-        public void Remove() => Item.Remove();
     }
 }

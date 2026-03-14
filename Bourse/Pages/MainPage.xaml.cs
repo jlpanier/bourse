@@ -3,16 +3,23 @@ using Repository.Dbo;
 
 namespace Bourse.Pages
 {
+    /// <summary>
+    /// Page principale affichant la liste des actions
+    /// </summary>
     [QueryProperty(nameof(Retour), "Retour")]
     public partial class MainPage : ContentPage
     {
+        /// <summary>
+        /// Retour de la page détail de l'action
+        /// </summary>
         public Business.Share Retour
         {
             set
             {
                 if (BindingContext is MainViewModel vm)
                 {
-                    vm.Init();
+                    // On recharge toutes les données (j'aurai pu chargé que la donnée)
+                    vm.Load();
                 }
             }
         }
@@ -40,11 +47,13 @@ namespace Bourse.Pages
 
             if (BindingContext is MainViewModel vm)
             {
-                while(!ShareDbo.Instance.IsReady())
+                while(!ShareDbo.Instance.IsReady()) // On attend que la BD soit prête
                 {
                     await Task.Delay(100);
                 }
-                vm.Init();
+                vm.Load(); // Chargement des données
+                await vm.FetchAsync(); // Récupération des données à jour depuis l'API en background
+
             }
         }
     }
